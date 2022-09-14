@@ -7,20 +7,27 @@
 
     <button
       mat-icon-button
-      class="menu-user-button ml-5"
+      class="menu-user-button mx-5"
     >
       <!-- (click)="displayNotifications()" -->
       <mat-icon>notifications_none</mat-icon>
-      <span
+      <!-- <span
         *ngIf="(notifications$ | async)?.length"
         class="red-badge"
       >
-      </span>
+      </span> -->
     </button>
 
     <button
       mat-icon-button
-      class="menu-user-button ml-5"
+      class="mx-5"
+    >
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      class="mx-5"
       [matMenuTriggerFor]="menu"
     >
       <mat-icon>account_circle</mat-icon>

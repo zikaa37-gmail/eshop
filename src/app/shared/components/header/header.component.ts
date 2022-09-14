@@ -2,7 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../../auth/auth.service';
-import { NotificationsService, Notification } from '../../services/notifications.service';
+import { NotificationsService } from '../../services/notifications.service';
+import { Notification } from '../../models/notificaions.model';
 // import { LanguageService } from '../../services/language.service';
 // import { TranslateService } from '@ngx-translate/core';
 // import { Credentials, Roles } from '../../../auth/auth.models';
@@ -15,7 +16,7 @@ import { NotificationsService, Notification } from '../../services/notifications
 export class HeaderComponent implements OnInit {
   isAuthenticated$!: Observable<boolean>;
   allLanguages: string[] = [];
-  notifications$: Observable<Notification[]> = this.notificationsService.notifications$;
+  // notifications$: Observable<Notification[]> = this.notificationsService.notifications$;
   currentLanguage!: string;
   otherLangs: string[] = [];
   showNotifications = false;

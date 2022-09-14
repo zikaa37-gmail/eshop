@@ -1,9 +1,38 @@
-<p>products-page works!</p>
-<button mat-raised-button>test</button>
-<button
-  mat-raised-button
-  color="primary"
-  (click)="test()"
->
-  <mat-icon>facebook</mat-icon> <span class="d-none d-md-inline ml-2">Facebook</span>
-</button>
+<!-- <p>products-page works!</p> -->
+<!-- <button mat-raised-button>test</button> -->
+<div class="container">
+  <div class="d-flex flex-column w-100">
+    <form [formGroup]="form">
+      <div class="d-flex flex-row justify-content-center m-0 p-0">
+        <mat-form-field appearance="outline">
+          <input
+            class="search-input"
+            matInput
+            placeholder="Search"
+            autocomplete="off"
+            formControlName="search"
+          >
+          <button
+            mat-icon-button
+            matSuffix
+            *ngIf="hasValue"
+            (click)="clearForm()"
+            class="pointer"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="ml-2 search-button"
+          (click)="searchProducts()"
+        >
+          <mat-icon>search</mat-icon> <span class="d-none d-md-inline ml-2">Search</span>
+        </button>
+
+      </div>
+    </form>
+  </div>
+</div>
