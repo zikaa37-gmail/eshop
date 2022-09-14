@@ -1,0 +1,74 @@
+/*
+ * Application global variables.
+ */
+
+// Set Font Awesome font path
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+
+// ---------------------------------------------------------------------------
+// Bootstrap variables
+//
+// Override Bootstrap variables here to suite your theme.
+// Copy variables you want to customize from node_modules/bootstrap/scss/_variables.scss
+
+//
+// Color system
+//
+
+$white   : #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #868e96;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black   : #1E1B19; //#212121;
+
+$black-text     : #040505; // #090808;
+$overide-success: #424242;
+$overide-warn   : #fff;
+
+$overide-disabled-button        : #424242;
+$overide-disabled-primary-button: #7b1fa280;
+
+
+$blue  : #0073dd;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink  : #e83e8c;
+$red   : #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green : #28a745;
+$teal  : #20c997;
+$cyan  : #17a2b8;
+$maroon: #ac8807;
+$beige : #F8EECC;
+
+$theme-colors: (primary: $blue,
+  secondary: $gray-600,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800,
+);
+
+$menu-color: rgba(139, 222, 224, 0.9);
+$bg-color  : #f6f5f2;
+
+$success: #006845;
+$error  : #C6342A;
+$info   : #0072A2;
+$warning: #9F591A;
+
+$subscribe-badge: #D2FAE4;
+$draft-badge    : #E6E2DA;
+// Use Bootstrap defaults for other variables, imported here so we can access all app variables in one place when used
+// in components.
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";

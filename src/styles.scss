@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import './theme/theme-variables.scss';
+@import './theme/theme-overrides.scss';
+@import './theme/fonts.scss';
+
+// Import NGX Toastr style
+@import '~ngx-toastr/toastr';
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  margin     : 0;
+  font-family: 'Brown-Regular', 'Brown-Light' !important;
+}
+
+a,
+i,
+.pointer {
+  cursor: pointer;
+}
