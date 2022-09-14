@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
-import { environment } from '../environments/environment';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -34,9 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
         positionClass: 'toast-bottom-right'
       }
     ),
-    environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
