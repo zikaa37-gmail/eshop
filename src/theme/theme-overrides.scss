@@ -16,8 +16,10 @@
 
 .mat-drawer-container,
 .mat-drawer {
-  background-color: $white !important; // #424242;
-  color           : $black-text !important; // #fff;
+  background-color: $white !important;
+  color           : $black-text !important;
+  height          : 100vh !important;
+  min-height      : 800px !important;
 }
 
 .mat-toolbar {
@@ -86,6 +88,35 @@ mat-form-field {
 
 .mat-form-field-wrapper {
   padding: 0;
+}
+
+/* TOASTER*/
+::ng-deep .toast-success {
+  background-color: $white !important;
+  border-left     : solid 10px $success !important;
+  color           : $black !important;
+}
+
+::ng-deep .toast-error {
+  background-color: $white !important;
+  border-left     : solid 10px $error !important;
+  color           : $black !important;
+}
+
+::ng-deep .toast-info {
+  background-color: $white !important;
+  border-left     : solid 10px $info !important;
+  color           : $black !important;
+}
+
+::ng-deep .toast-warning {
+  background-color: $white !important;
+  border-left     : solid 10px $warning !important;
+  color           : $black !important;
+}
+
+::ng-deep .toast-container .ngx-toastr {
+  margin: 5px;
 }
 
 /**/

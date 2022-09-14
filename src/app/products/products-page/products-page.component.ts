@@ -12,4 +12,7 @@ export class ProductsPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  test() {
+    console.log('Facebook');
+  }
 }

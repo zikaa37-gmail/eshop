@@ -11,6 +11,7 @@
 html,
 body {
   margin     : 0;
+  height     : 100%;
   font-family: 'Brown-Regular', 'Brown-Light' !important;
 }
 
@@ -18,4 +19,14 @@ a,
 i,
 .pointer {
   cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin     : 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

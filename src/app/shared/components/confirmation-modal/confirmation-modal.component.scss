@@ -1,0 +1,10 @@
+@import 'src/theme/theme-variables.scss';
+@import 'src/theme/theme-overrides.scss';
+
+
+.modal-button {
+  max-width : 150px !important;
+  min-width : 100px !important;
+  height    : 40px;
+  margin-top: 6px;
+}

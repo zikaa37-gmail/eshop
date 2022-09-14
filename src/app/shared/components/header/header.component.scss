@@ -1,0 +1,80 @@
+@import 'src/theme/theme-variables.scss';
+@import 'src/theme/theme-overrides.scss';
+
+
+.menu-spacer {
+  flex: 1 1 auto;
+}
+
+.menu-button {
+  background-color: transparent; // #212121; // $black;
+  color           : $black-text; // $white;
+  border          : none;
+
+  &:hover {
+    color: #495057; //$gray-400;
+  }
+
+}
+
+.menu-user-button {
+  background-color   : $white; // #413e3c; //  $black;
+  color              : $black-text; // $white;
+  // min-width       : 150px;
+  text-align         : left;
+  // border-radius   : 30px;
+}
+
+.router-link-active {
+  border-bottom: solid 1px $maroon;
+  border-radius: 0 !important;
+}
+
+.maroon-text {
+  color: #ac8807; // $maroon;
+}
+
+::ng-deep .mat-menu-content {
+  color    : $white;
+  min-width: 180px;
+  flex-grow: 1;
+}
+
+.red-badge {
+  border-radius: 50%;
+  background   : #dc3545;
+  color        : #fff;
+  width        : 10px;
+  height       : 10px;
+  position     : absolute;
+  top          : 22px;
+  right        : 11px;
+}
+
+.red-badge-number {
+  text-align: center;
+  color     : $white;
+  position  : relative;
+  top       : -11px;
+  font-size : 12px;
+  left      : 7px;
+}
+
+.notificationsPanel {
+  position  : absolute;
+  top       : 0px;
+  right     : 3px;
+  width     : 350px;
+  min-height: 500px;
+  height    : auto;
+  background: $white;
+  color     : $black-text;
+  z-index   : 20;
+  color     : $white;
+  padding   : 10px;
+  box-shadow: -10px 0px 10px 1px #c5c3c3;
+
+  .mat-card {
+    margin: 10px 0px !important;
+  }
+}

@@ -1,0 +1,32 @@
+<div class="d-flex flex-column">
+  <h3 class="mb-3">
+    <!-- {{data.title | translate}} -->
+
+  </h3>
+
+  <pre>
+    <!-- {{data.content | translate}}-->
+    </pre>
+
+  <div class="d-flex flex-row justify-content-end mt-5">
+    <button
+      *ngIf="data.hasRejectionButton"
+      mat-raised-button
+      (click)="closeDialog()"
+      color="warn"
+      class="m-2 modal-button"
+    >
+      <!-- {{data.rejectionLabel | translate}} -->
+    </button>
+
+    <button
+      mat-raised-button
+      class="modal-button"
+      color="success"
+      (click)="confirm()"
+    >
+      <!-- {{data.confirmationLabel | translate}} -->
+    </button>
+
+  </div>
+</div>

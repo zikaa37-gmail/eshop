@@ -1,0 +1,107 @@
+<mat-toolbar>
+
+  <span
+    class="d-flex flex-row no-wrap"
+    *ngIf="router.url !== '/login'; else loginHeader"
+  >
+
+    <button
+      mat-icon-button
+      class="menu-user-button ml-5"
+    >
+      <!-- (click)="displayNotifications()" -->
+      <mat-icon>notifications_none</mat-icon>
+      <span
+        *ngIf="(notifications$ | async)?.length"
+        class="red-badge"
+      >
+      </span>
+    </button>
+
+    <button
+      mat-icon-button
+      class="menu-user-button ml-5"
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <div class="d-flex flex-column">
+        <button
+          mat-menu-item
+          (click)="logout()"
+        >
+          <div class="d-flex flex-row  justify-content-between w-100">
+            <span> Logout</span>
+            <!-- <span> {{'LOGOUT' | translate}}</span> -->
+            <mat-icon class="mt-2">logout</mat-icon>
+          </div>
+        </button>
+
+        <!--   <button
+          mat-menu-item
+          *ngFor="let lang of otherLangs"
+          (click)="changeLanguage(lang)"
+        >
+          <div class="d-flex flex-row  justify-content-between w-100">
+            <span>{{(lang === 'ar' ? 'ARABIC':'ENGLISH') | translate}}</span>
+            <mat-icon class="mt-2">language</mat-icon>
+          </div>
+        </button>-->
+      </div>
+    </mat-menu>
+  </span>
+</mat-toolbar>
+
+<ng-template #loginHeader>
+
+  <!--  <button
+    class="text-right btn btn-light bg-transparent border-0"
+    *ngFor="let lang of otherLangs"
+    (click)="changeLanguage(lang)"
+  >
+    <div class="d-flex flex-row justify-content-between w-100">
+      <mat-icon class="mr-2">language</mat-icon>
+      <span>{{(lang === 'ar' ? 'ARABIC':'ENGLISH') | translate}}</span>
+    </div>
+  </button>-->
+</ng-template>
+
+<!-- <div
+  #notificationsPanel
+  class="d-flex-flex-column notificationsPanel"
+  *ngIf="showNotifications"
+>
+ <div class="d-flex flex-row no-wrap justify-content-between text-black">
+    <h2>{{'NOTIFICATIONS' | translate}}</h2>
+    <button
+      mat-icon-button
+      (click)="hideNotifications()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div> -->
+
+<!-- <div *ngFor="let notification of (notifications$ | async)">
+    <mat-card *ngIf="!notification.seen">
+      <mat-card-title>{{notification.title}}</mat-card-title>
+      <mat-card-content>{{notification.content}}</mat-card-content>
+      <mat-card-footer>
+        <div class="d-flex flex-row justify-content-between">
+          <button
+            class="btn btn-secondary"
+            (click)="markNotificationSeen(notification)"
+          >OK
+          </button>
+          <button
+            class="btn btn-secondary"
+            (click)="markNotificationSeen(notification)"
+          >Cancel
+          </button>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+
+</div>-->

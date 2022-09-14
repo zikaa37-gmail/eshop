@@ -1,0 +1,12 @@
+.display-on-top {
+  z-index: 20;
+}
+
+.toast-container {
+  z-index       : 10 !important;
+  pointer-events: all !important;
+}
+
+#toast-container {
+  z-index: 10 !important;
+}

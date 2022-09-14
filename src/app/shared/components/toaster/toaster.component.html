@@ -1,0 +1,12 @@
+<!-- <h3 class="text-black">toaster works!</h3> -->
+<div
+  class="border px-2 text-black display-on-top"
+  (click)="hideToast()"
+  *ngIf="visible"
+>
+  <mat-icon (click)="hideToast()">close</mat-icon><span class="mt-2"></span>
+  <span
+    class="m-3"
+    (click)="hideToast()"
+  > Message is too long to be displayed in 1 line</span>
+</div>

@@ -1,0 +1,52 @@
+@import 'src/theme/theme-variables.scss';
+@import 'src/theme/theme-overrides.scss';
+
+:host {
+  display        : flex;
+  justify-content: center;
+  margin         : 200px 0px;
+}
+
+.login-card {
+  display            : flex;
+  flex-direction     : column;
+  align-items        : center;
+  width              : 400px;
+  // background-color: white;
+  border             : none;
+  border-radius      : 12px;
+
+  .card-title {
+    color        : #090808;
+    margin-bottom: 30px;
+  }
+
+  .card-form {
+    display       : flex;
+    flex-direction: column;
+
+    .error {
+      color: red;
+    }
+
+    button {
+      margin-top      : 30px;
+      color           : white;
+      border          : none;
+      border-radius   : 99px;
+      background-color: #090808;
+    }
+
+    button:hover {
+      background-color: #937206;
+    }
+  }
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: $gray-500 !important;
+}
+
+::ng-deep .mat-form-field-label {
+  color: $gray-700 !important;
+}

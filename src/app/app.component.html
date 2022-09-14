@@ -1,1 +1,76 @@
-<h1 class="text-center">E-SHOP</h1>
+<div class="container-fluid">
+  <mat-sidenav-container>
+    <mat-sidenav
+      #sidenav
+      [mode]="'over'"
+    >
+      <span
+        class="d-flex flex-column"
+        *ngIf="router.url !== '/login'"
+      >
+        <p><button
+            mat-icon-button
+            (click)="sidenav.toggle()"
+            class="mt-2"
+          >
+            <mat-icon>close</mat-icon>
+          </button></p>
+
+        <a
+          class="text-left text-black ml-3 mb-3 text-decoration-none"
+          [routerLink]="['products']"
+          [routerLinkActive]="['router-link-active']"
+          (click)="sidenav.toggle()"
+        >
+          Products
+          <!-- {{"ALL_DATA_PRODUCTS" | translate}} -->
+        </a>
+
+
+        <a
+          class="text-left text-black ml-3 mb-3 text-decoration-none"
+          [routerLink]="['login']"
+          [routerLinkActive]="['router-link-active']"
+          (click)="sidenav.toggle()"
+        >
+          Login
+          <!-- {{"SUBSCRIBED_DATA_PRODUCTS" | translate}} -->
+        </a>
+
+        <!-- <a
+          class="text-left text-black ml-3 mb-3 text-decoration-none"
+          [routerLink]="['products/my']"
+          [routerLinkActive]="['router-link-active']"
+        >
+          {{"MY_DATA_PRODUCTS" | translate}}
+        </a>-->
+
+
+      </span>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-row">
+          <button
+            mat-icon-button
+            *ngIf="router.url !== '/login'"
+            (click)="sidenav.toggle()"
+            class="mt-2"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span class="ml-3 mt-3">E</span>
+          <span class="maroon-text mt-3">SHOP</span>
+          <span class="menu-spacer"></span>
+          <app-header></app-header>
+        </div>
+      </div>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  <!-- <app-header></app-header>
+  <router-outlet></router-outlet> -->
+</div>
