@@ -16,14 +16,14 @@
 
 .mat-drawer-container,
 .mat-drawer {
-  background-color: $white !important;
+  background-color: transparent !important;
   color           : $black-text !important;
   height          : 100vh !important;
   min-height      : 800px !important;
 }
 
 .mat-toolbar {
-  background: $white !important;
+  background: transparent !important;
   color     : $black-text !important;
 }
 

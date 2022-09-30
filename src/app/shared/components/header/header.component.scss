@@ -7,22 +7,20 @@
 }
 
 .menu-button {
-  background-color: transparent; // #212121; // $black;
-  color           : $black-text; // $white;
+  background-color: transparent;
+  color           : $black-text;
   border          : none;
 
   &:hover {
-    color: #495057; //$gray-400;
+    color: #495057;
   }
 
 }
 
 .menu-user-button {
-  background-color   : $white; // #413e3c; //  $black;
-  color              : $black-text; // $white;
-  // min-width       : 150px;
-  text-align         : left;
-  // border-radius   : 30px;
+  background-color: transparent;
+  color           : $black-text;
+  text-align      : left;
 }
 
 .router-link-active {
@@ -31,7 +29,7 @@
 }
 
 .maroon-text {
-  color: #ac8807; // $maroon;
+  color: #ac8807;
 }
 
 ::ng-deep .mat-menu-content {
