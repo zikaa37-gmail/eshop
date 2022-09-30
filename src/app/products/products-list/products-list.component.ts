@@ -1,27 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoaderService } from 'src/app/shared/components/loader/loader.service';
-import { NotificationsService } from 'src/app/shared/services/notifications.service';
-import { ProductsFakerService } from '../products-faker.service';
-import { CreditCard, Customer, Manufacturer, Product, SearchParams } from '../products.models';
+import { Product, SearchParams } from '../products.models';
 import { ProductsService } from '../products.service';
+import { Location } from '@angular/common'
+
 @Component({
-  selector: 'app-products-page',
-  templateUrl: './products-page.component.html',
-  styleUrls: ['./products-page.component.scss']
+  selector: 'app-products-list',
+  templateUrl: './products-list.component.html',
+  styleUrls: ['./products-list.component.scss']
 })
-export class ProductsPageComponent implements OnInit {
+export class ProductsListComponent implements OnInit {
   form!: FormGroup;
   hasValue = false;
   isLoading$: Observable<boolean> = this.loaderService.isLoading$;
-  // customers: Customer[] = [];
-  // manufacturers: Manufacturer[] = [];
-  // creditCards: CreditCard[] = [];
-  // products: Product[] = [];
-  products$: Observable<Product[]> = this.productsService.getProducts('');
-  categories$ = this.productsService.getCategories();
+  name = this.route.snapshot.params['name'];
+  products$: Observable<Product[]> = this.productsService.getProducts(`categoryName=${this.name}`);
   searchParams: SearchParams = {
     q: '',
     _start: 1,//&
@@ -43,35 +39,26 @@ export class ProductsPageComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private notificationsService: NotificationsService,
-    private fakerService: ProductsFakerService,
     private loaderService: LoaderService,
     private productsService: ProductsService,
-    private router: Router
-  ) { this.buildForm() }
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
-    // this.customers = this.fakerService.createFakeCustomer(10);
-    // this.manufacturers = this.fakerService.createFakeManufacturers(10);
-    // this.creditCards = this.fakerService.createFakeCreditCards(10);
-    // this.products = this.fakerService.createFakeProducts(10);
-
-    // console.log('customers', this.customers);
-    // console.log('manufacturers', this.manufacturers);
-    // console.log('creditCards', this.creditCards);
-    // console.log('products', this.products);
-
+    this.buildForm();
+    this.loaderService.isLoading$.next(true);
+    // this.products$ = this.productsService.getProducts(`categoryName=${this.name}`);
   }
 
   searchProducts() {
     if (this.searchValue.length < 3) {
-      this.notificationsService.showWarning('Value too short');
       return;
     }
     this.hasValue = !!(this.searchValue.length);
-    // this.notificationsService.showSuccess('Searching');
     this.loaderService.isLoading$.next(true);
-    this.products$ = this.productsService.getProducts(this.createParamsString());
+    this.products$ = this.productsService.getProducts(`categoryName=${this.name}&q=${this.searchValue}`);
 
   }
 
@@ -92,14 +79,14 @@ export class ProductsPageComponent implements OnInit {
     return params;
   }
 
-  navigateTo(name: string) {
-    this.router.navigate(['products/category', name])
+  navigateTo(barcode: string) {
+    this.router.navigate(['products/preview', barcode])
   }
 
   clearForm() {
     this.form.reset();
     this.hasValue = false;
-    this.products$ = this.productsService.getProducts('');
+    this.products$ = this.productsService.getProducts(`categoryName=${this.name}`);
   }
 
   buildForm() {
@@ -108,7 +95,8 @@ export class ProductsPageComponent implements OnInit {
     })
   }
 
+  back(): void {
+    this.location.back()
+  }
 
 }
-
-

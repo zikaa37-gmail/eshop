@@ -1,0 +1,25 @@
+<div *ngIf="(product$ |async)?.[0] as product">
+  <h2>{{product?.name}}</h2>
+  <p><b>Description: </b> {{product?.description}}</p>
+  <p><b>Manufacturer: </b>{{product?.manufacturer?.name}}</p>
+  <p><b>Price: </b> ${{product?.price}}</p>
+  <div class="d-flex flex-row flex-wrap m-0 p-0">
+    <img
+      *ngFor="let image of product?.images"
+      [src]="image"
+      class="photo mr-3 mb-3"
+    >
+  </div>
+  <div class="my-5 text-right">
+    <button
+      mat-icon-button
+      color="primary"
+      class="mr-5 mb-3"
+      (click)="back()"
+    >
+      <mat-icon>arrow_back</mat-icon> Back
+    </button>
+  </div>
+</div>
+
+<app-loader *ngIf="(isLoading$ |async)"></app-loader>

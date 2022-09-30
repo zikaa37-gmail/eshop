@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "subcategoryId": 1,
+    "name": "Men",
+    "active": true
+  },
+  {
+    "id": 2,
+    "subcategoryId": 1,
+    "name": "Women",
+    "active": true
+  }
+]

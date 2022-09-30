@@ -38,17 +38,29 @@
     </form>
 
     <!-- {{products | json}} -->
-    <div class="d-flex flex-row flex-wrap m-0 p-0 justify-content-center">
-      <app-preview-box
-        *ngFor="let category of (categories$ | async) as categories"
-        [name]="category.name"
-        [image]="category.imageUrl"
-        class="m-0 p-0"
-        (click)="navigateTo(category.name)"
-      ></app-preview-box>
 
+    <div class="d-flex flex-row flex-wrap justify-content-center w-100">
+      <app-preview-box
+        *ngFor="let product of (products$ | async)"
+        [hasFooter]="true"
+        [name]="product.name"
+        [image]="product.images[0]"
+        [price]="product.price"
+        (click)="navigateTo(product.barcode)"
+      ></app-preview-box>
     </div>
 
+  </div>
+
+  <div class="my-5 text-right">
+    <button
+      mat-icon-button
+      color="primary"
+      class="mr-5"
+      (click)="back()"
+    >
+      <mat-icon>arrow_back</mat-icon> Back
+    </button>
   </div>
 </div>
 

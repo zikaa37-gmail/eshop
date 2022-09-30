@@ -1,0 +1,202 @@
+[
+  {
+    "cardNumber": "3664-949595-5447",
+    "cardIssuer": "instapayment",
+    "ccv": "113",
+    "expirationMonth": "7",
+    "expirationYear": "63",
+    "type": "switch",
+    "customerId": "050928cc-9466-4321-8e3f-93375a362561",
+    "active": true
+  },
+  {
+    "cardNumber": "6385-7994-0728-4248",
+    "cardIssuer": "solo",
+    "ccv": "132",
+    "expirationMonth": "4",
+    "expirationYear": "85",
+    "type": "maestro",
+    "customerId": "5807fc1b-aa1f-45d4-86ec-da0095f59af5",
+    "active": true
+  },
+  {
+    "cardNumber": "6011-6286-2806-6128-3667",
+    "cardIssuer": "jcb",
+    "ccv": "343",
+    "expirationMonth": "10",
+    "expirationYear": "55",
+    "type": "american_express",
+    "customerId": "bfa4fa1b-9d53-498a-9a27-46e2008d9d5b",
+    "active": true
+  },
+  {
+    "cardNumber": "5020606252624654",
+    "cardIssuer": "jcb",
+    "ccv": "606",
+    "expirationMonth": "5",
+    "expirationYear": "36",
+    "type": "visa",
+    "customerId": "e9884cc0-9f5f-4194-bb5e-8a6dc623e4e8",
+    "active": true
+  },
+  {
+    "cardNumber": "3536-3088-4567-6018",
+    "cardIssuer": "visa",
+    "ccv": "365",
+    "expirationMonth": "4",
+    "expirationYear": "55",
+    "type": "diners_club",
+    "customerId": "09ca0131-4776-422d-bbc3-44570f506083",
+    "active": true
+  },
+  {
+    "cardNumber": "670909943864576916",
+    "cardIssuer": "american_express",
+    "ccv": "339",
+    "expirationMonth": "9",
+    "expirationYear": "60",
+    "type": "solo",
+    "customerId": "a3ae0776-c7d7-475c-b56b-78bfb7131887",
+    "active": true
+  },
+  {
+    "cardNumber": "6011-6205-3177-3550-5226",
+    "cardIssuer": "laser",
+    "ccv": "368",
+    "expirationMonth": "2",
+    "expirationYear": "80",
+    "type": "laser",
+    "customerId": "166a86fe-c345-4a17-8e34-3517fb09af8a",
+    "active": true
+  },
+  {
+    "cardNumber": "6709443337407452698",
+    "cardIssuer": "visa",
+    "ccv": "020",
+    "expirationMonth": "8",
+    "expirationYear": "80",
+    "type": "mastercard",
+    "customerId": "9dcdd565-6910-4c44-92c8-a311e57eeff1",
+    "active": true
+  },
+  {
+    "cardNumber": "5277-6829-9458-3870",
+    "cardIssuer": "american_express",
+    "ccv": "248",
+    "expirationMonth": "8",
+    "expirationYear": "17",
+    "type": "mastercard",
+    "customerId": "da720541-87dd-4a86-bd69-ee6a8212d7f2",
+    "active": true
+  },
+  {
+    "cardNumber": "5108-9383-2425-7964",
+    "cardIssuer": "laser",
+    "ccv": "425",
+    "expirationMonth": "2",
+    "expirationYear": "82",
+    "type": "american_express",
+    "customerId": "bc03e769-0452-433c-924c-4defcc15c479",
+    "active": true
+  },
+  {
+    "cardNumber": "4367717407372",
+    "cardIssuer": "mastercard",
+    "ccv": "068",
+    "expirationMonth": "4",
+    "expirationYear": "67",
+    "type": "maestro",
+    "customerId": "59ebdcf5-f4b8-439e-ae27-ffada15ded6c",
+    "active": true
+  },
+  {
+    "cardNumber": "6384-2514-0560-8029",
+    "cardIssuer": "jcb",
+    "ccv": "784",
+    "expirationMonth": "7",
+    "expirationYear": "21",
+    "type": "switch",
+    "customerId": "1636e5e0-eeb7-4138-bb04-b91fffeb2438",
+    "active": true
+  },
+  {
+    "cardNumber": "3528-8329-4967-8166",
+    "cardIssuer": "visa",
+    "ccv": "594",
+    "expirationMonth": "2",
+    "expirationYear": "10",
+    "type": "switch",
+    "customerId": "5a0eb2ba-9d80-4cb1-aefb-eaf6a52824c4",
+    "active": true
+  },
+  {
+    "cardNumber": "3577-3170-1195-1451",
+    "cardIssuer": "instapayment",
+    "ccv": "450",
+    "expirationMonth": "6",
+    "expirationYear": "86",
+    "type": "switch",
+    "customerId": "4158b8ec-5629-480b-96a6-cddb99d5d741",
+    "active": true
+  },
+  {
+    "cardNumber": "3726-227450-88832",
+    "cardIssuer": "instapayment",
+    "ccv": "435",
+    "expirationMonth": "3",
+    "expirationYear": "89",
+    "type": "diners_club",
+    "customerId": "17b5e5b4-55da-4e99-a2b1-de08f0ffa127",
+    "active": true
+  },
+  {
+    "cardNumber": "3529-8598-4427-8916",
+    "cardIssuer": "mastercard",
+    "ccv": "304",
+    "expirationMonth": "3",
+    "expirationYear": "22",
+    "type": "diners_club",
+    "customerId": "e5a248a1-c3a8-43cc-8f9f-980fadfbf97b",
+    "active": true
+  },
+  {
+    "cardNumber": "6376-6224-6136-5987",
+    "cardIssuer": "diners_club",
+    "ccv": "334",
+    "expirationMonth": "9",
+    "expirationYear": "2",
+    "type": "jcb",
+    "customerId": "f0a0cae5-d75a-40df-9182-4389a5b81d38",
+    "active": true
+  },
+  {
+    "cardNumber": "5038-3250-7506-4572",
+    "cardIssuer": "american_express",
+    "ccv": "725",
+    "expirationMonth": "9",
+    "expirationYear": "8",
+    "type": "solo",
+    "customerId": "65a01dbc-2754-4bb6-9e18-3153577ece41",
+    "active": true
+  },
+  {
+    "cardNumber": "3634-880173-2612",
+    "cardIssuer": "maestro",
+    "ccv": "436",
+    "expirationMonth": "4",
+    "expirationYear": "32",
+    "type": "solo",
+    "customerId": "3d5de1cf-9ac9-46c8-b1f9-a344f316c44c",
+    "active": true
+  },
+  {
+    "cardNumber": "6767-5243-0338-3034-447",
+    "cardIssuer": "american_express",
+    "ccv": "105",
+    "expirationMonth": "7",
+    "expirationYear": "1",
+    "type": "diners_club",
+    "customerId": "0ca6def7-d6dd-4e3a-9049-2dd52623d473",
+    "active": true
+  }
+]

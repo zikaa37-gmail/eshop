@@ -8,6 +8,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { HeaderComponent } from './components/header/header.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ToasterComponent } from './components/toaster/toaster.component';
+import { PreviewBoxComponent } from './components/preview-box/preview-box.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ToasterComponent } from './components/toaster/toaster.component';
     ToasterComponent,
     ConfirmationModalComponent,
     LoaderComponent,
+    PreviewBoxComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { ToasterComponent } from './components/toaster/toaster.component';
     ToasterComponent,
     ConfirmationModalComponent,
     LoaderComponent,
+    PreviewBoxComponent,
     MaterialModule,
     ReactiveFormsModule
   ]

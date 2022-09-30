@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "categoryId": 1,
+    "name": "Sports",
+    "active": true
+  },
+  {
+    "id": 2,
+    "categoryId": 1,
+    "name": "Casual",
+    "active": true
+  },
+  {
+    "id": 3,
+    "categoryId": 1,
+    "name": "Wedding",
+    "active": true
+  }
+]

@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Server
+User Json server [Reference](https://www.npmjs.com/package/json-server)
+Created mocks using Faker library [Reference](https://fakerjs.dev/guide/)
+Added separate files for each API (e.g. products.json etc) to './server/mocks' folder
+Joined all APIs in './server/db.js' file
+To run server with APIs, open another instance of terminal, and in the root folder run command [command]('json-server --watch ./server/db.js') or [command]('npm run server')

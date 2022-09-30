@@ -30,3 +30,40 @@ body {
   margin     : 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mat-card,
+.mat-card-content,
+.mat-card-header,
+.mat-card.footer {
+  @media only screen and (max-width: 400px) {
+    max-width: 300px !important;
+    min-width: 300px !important;
+    width    : 300px !important;
+    padding  : 5px !important;
+    margin   : 10px 0px !important;
+  }
+}
+
+.ellipsis {
+  display      : block;
+  overflow     : hidden;
+  text-overflow: ellipsis;
+  white-space  : nowrap;
+}
+
+.search-input {
+  padding: 5px;
+
+  @media only screen and (max-width: 400px) {
+    width: 250px;
+  }
+}
+
+.search-button {
+  height    : 67px;
+  margin-top: 5px;
+}
+
+.negative-margin {
+  margin-left: -50px;
+}

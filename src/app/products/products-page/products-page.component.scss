@@ -2,9 +2,6 @@
 @import 'src/theme/theme-overrides.scss';
 
 .search-input {
-  // width        : 500px;
-  // line-height  : 40px;
-  // border-radius: 5px;
   padding: 5px;
 
   @media only screen and (max-width: 400px) {
