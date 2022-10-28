@@ -1,19 +1,6 @@
 @import 'src/theme/theme-variables.scss';
 @import 'src/theme/theme-overrides.scss';
 
-mat-sidenav {
-  width    : 335px;
-  // height: 100%;
-}
-
-.menu-spacer {
-  flex: 1 1 auto;
-}
-
-.maroon-text {
-  color: $maroon;
-}
-
 .search-input {
   padding: 5px;
 

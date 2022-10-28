@@ -27,9 +27,9 @@ body {
 }
 
 body {
-  margin     : 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background : lightblue !important;
+  margin        : 0;
+  font-family   : Roboto, "Helvetica Neue", sans-serif;
+  // background : lightblue !important;
 }
 
 .mat-card,
@@ -67,4 +67,9 @@ body {
 
 .negative-margin {
   margin-left: -50px;
+}
+
+a,
+.pointer {
+  cursor: pointer;
 }

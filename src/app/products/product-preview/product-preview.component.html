@@ -1,4 +1,4 @@
-<div *ngIf="(product$ |async)?.[0] as product">
+<div *ngIf="(selectedProduct$ |async) as product">
   <h2>{{product?.name}}</h2>
   <p><b>Description: </b> {{product?.description}}</p>
   <p><b>Manufacturer: </b>{{product?.manufacturer?.name}}</p>
@@ -10,6 +10,19 @@
       class="photo mr-3 mb-3"
     >
   </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="addToBasket(product)"
+  >Add to basket</button>
+  <button
+    class="mx-3"
+    mat-raised-button
+    color=""
+    (click)="removeFromBasket(product)"
+  >Remove from basket</button>
+
   <div class="my-5 text-right">
     <button
       mat-icon-button

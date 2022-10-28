@@ -11,9 +11,9 @@ export class LoaderComponent implements OnInit {
   @Input() diameter?= 130;
   @Input() color?: string;
   @Input() strokeWidth: string = '10';
-  isLoading: Observable<boolean> = this.loaderService.isLoading$;
+  // isLoading$: Observable<boolean> = this.loaderService.isLoading$;
 
-  constructor(private loaderService: LoaderService) { }
+  constructor(public loaderService: LoaderService) { }
 
   ngOnInit(): void {
   }

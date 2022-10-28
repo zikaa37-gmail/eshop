@@ -18,12 +18,11 @@
 
         <a
           class="text-left text-black ml-3 mb-3 text-decoration-none"
-          [routerLink]="['products']"
+          [routerLink]="['categories']"
           [routerLinkActive]="['router-link-active']"
           (click)="sidenav.toggle()"
         >
-          Products
-          <!-- {{"ALL_DATA_PRODUCTS" | translate}} -->
+          Product Categories
         </a>
 
 
@@ -34,7 +33,6 @@
           (click)="sidenav.toggle()"
         >
           Login
-          <!-- {{"SUBSCRIBED_DATA_PRODUCTS" | translate}} -->
         </a>
       </span>
     </mat-sidenav>
@@ -57,6 +55,7 @@
         </div>
       </div>
       <div>
+        <app-loader *ngIf="(isLoading$ | async)"></app-loader>
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>

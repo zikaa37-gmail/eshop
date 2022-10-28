@@ -1,13 +1,11 @@
+<!-- {{(products$ | async) | json}} -->
+<app-search></app-search>
 <div class="container">
-  <div
-    class="d-flex flex-column w-100"
-    *ngIf="!(isLoading$ |async)"
-  >
-    <app-search></app-search>
+  <div class="d-flex flex-column w-100">
 
     <div
       class="d-flex flex-row flex-wrap justify-content-center w-100"
-      *ngIf="(filteredProducts$ | async) as products; else noItems"
+      *ngIf="(products$ | async) as products"
     >
       <app-preview-box
         *ngFor="let product of products"
@@ -18,12 +16,8 @@
         (click)="navigateTo(product.barcode)"
       ></app-preview-box>
     </div>
-
+    <div *ngIf="(products$ | async)?.length === 0">No Items</div>
   </div>
-
-  <ng-template #noItems>
-    <div *ngIf="!(isLoading$ | async)">No items</div>
-  </ng-template>
 
   <div class="my-5 text-right">
     <button
@@ -36,5 +30,7 @@
     </button>
   </div>
 </div>
+
+
 
 <app-loader *ngIf="(isLoading$ | async)"></app-loader>

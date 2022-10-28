@@ -5,7 +5,7 @@ const categories = require("./mocks/categories");
 const subcategories = require("./mocks/subcategories");
 const productGroups = require("./mocks/product-groups");
 const products = require("./mocks/products");
-// const manufacturers = require("./mocks/manufacturers");
+const orders = require("./mocks/orders");
 module.exports = () => ({
   customers,
   creditCards,
@@ -13,5 +13,6 @@ module.exports = () => ({
   categories,
   subcategories,
   productGroups,
-  products
+  products,
+  orders
 });

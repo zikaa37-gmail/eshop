@@ -1,0 +1,56 @@
+<div *ngIf="(basket$ | async) as basket">
+  <div class="d-flex flex-column">
+    <div
+      class="d-flex flex-row"
+      *ngFor="let item of basket"
+    >
+      <div>
+        <app-preview-box
+          [hasFooter]="true"
+          [image]="item.product.images[0]"
+          [name]="item.product.name"
+          [price]="item.product.price"
+        ></app-preview-box>
+      </div>
+      <div class="p-4">
+        <h2>{{item.product.name}}</h2>
+        <p><b>Description: </b> <span class="text-wrap">{{item.product.description}}</span></p>
+        <p><b>Manufacturer: </b>{{item.product.manufacturer.name}}</p>
+        <p><b>Price: </b> ${{item.product.price}}</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <div
+      class="d-flex flex-row justify-content-between my-5"
+      *ngIf="basket?.length"
+    >
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="order(basket)"
+      >Finalize order</button>
+
+      <button
+        mat-raised-button
+        (click)="back()"
+      >Add more items</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div
+  *ngIf="!(basket$ | async)?.length"
+  class="text-center"
+>
+  <h2 class="text-center">No items in the basket</h2>
+  <button
+    mat-raised-button
+    (click)="back()"
+    class="my-5"
+  >Add items</button>
+</div>

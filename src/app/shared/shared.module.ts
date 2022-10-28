@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ToasterComponent } from './components/toaster/toaster.component';
 import { PreviewBoxComponent } from './components/preview-box/preview-box.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { PreviewBoxComponent } from './components/preview-box/preview-box.compon
     ConfirmationModalComponent,
     LoaderComponent,
     PreviewBoxComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { PreviewBoxComponent } from './components/preview-box/preview-box.compon
     ConfirmationModalComponent,
     LoaderComponent,
     PreviewBoxComponent,
+    SearchComponent,
     MaterialModule,
     ReactiveFormsModule
   ]

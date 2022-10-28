@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoriesComponent } from '../categories/categories.component';
+import { BasketComponent } from './basket/basket.component';
 import { ProductPreviewComponent } from './product-preview/product-preview.component';
 import { ProductsListComponent } from './products-list/products-list.component';
-import { ProductsPageComponent } from './products-page/products-page.component';
+import { ProductsSearchComponent } from './products-search/products-search.component';
 // import { AuthGuard } from '../auth/auth.guard';
 // import { ProductsDataFormComponent } from './products-data-form/products-data-form.component';
 // import { ProductsDetailsComponent } from './products-details/products-details.component';
@@ -14,8 +16,8 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: '',
-        component: ProductsPageComponent
+        path: 'search/:q',
+        component: ProductsSearchComponent
       },
       {
         path: 'category/:name',
@@ -24,6 +26,10 @@ const routes: Routes = [
       {
         path: 'preview/:barcode',
         component: ProductPreviewComponent
+      },
+      {
+        path: 'basket',
+        component: BasketComponent
       },
       // {
       //   path: 'edit/:name',

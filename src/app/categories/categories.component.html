@@ -1,0 +1,29 @@
+<div
+  class="d-flex flex-column w-100"
+  *ngIf="!(isLoading$ |async)"
+>
+  <app-search></app-search>
+
+  <div
+    class="d-flex flex-row flex-wrap m-0 p-0 justify-content-center"
+    *ngIf="(categories$ | async) as categories; else noItems"
+  >
+    <app-preview-box
+      *ngFor="let category of categories"
+      [name]="category.name"
+      [image]="category.imageUrl"
+      class="m-0 p-0"
+      (click)="navigateTo(category.name)"
+    ></app-preview-box>
+
+  </div>
+
+  <ng-template #noItems>
+    No items
+  </ng-template>
+
+</div>
+
+
+
+<app-loader *ngIf="(isLoading$ | async)"></app-loader>

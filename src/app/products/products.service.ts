@@ -1,53 +1,113 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, map, Observable, shareReplay, Subject, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoaderService } from '../shared/components/loader/loader.service';
-import { Product } from './products.models';
+import { ErrorHandlerService } from '../shared/services/error-handler.service';
+import { Category, OrderItem, Product } from './products.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   apiUrl = environment.apiUrl;
-  products$ = new BehaviorSubject<any[]>([]);
+
+  private productsSubject = new BehaviorSubject<Product[]>([]);
+  products$ = this.productsSubject.asObservable();
+
+  private productsActionSubject = new BehaviorSubject<string>('');
+  productsAction$ = this.productsActionSubject.asObservable();
+
+  search$ = new BehaviorSubject<string>('');
+  selectedProduct$ = new Subject<Product>();
+  basket$ = new BehaviorSubject<OrderItem[]>([]);
+  orderItems: OrderItem[] = [];
+  queryString$ = new BehaviorSubject<string>('');
 
   constructor(
     private http: HttpClient,
-    private loaderService: LoaderService
-  ) { }
+    private loaderService: LoaderService,
+    private errorHandlerService: ErrorHandlerService
+  ) { this.getProducts().subscribe(); }
 
-  getProducts(search: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/products?${search}`).pipe(
-      map((products: any) => {
-        this.loaderService.isLoading$.next(false)
-        return products;
+
+  // productsResult$ = combineLatest([this.products$, this.productsAction$])
+  //   .pipe(
+  //     map(([products, action]) => {
+  //       products.map(product => product)
+  //     }));
+
+  getProducts(search = ''): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/products?${search}`)
+      .pipe(
+        tap((res: Product[]) => {
+          this.productsSubject.next(res);
+        }),
+        shareReplay(),
+        catchError(err => this.errorHandlerService.handleError(err))
+      )
+  }
+
+  getProductByName(name: string): Observable<Product> {
+    return this.http.get<Product[]>(`${this.apiUrl}/products/${name}`).pipe(
+      map((product: Product[]) => {
+        // this.loaderService.isLoading$.next(false);
+        return product[0];
       }),
-      tap(res => this.products$.next(res)),
+
+      tap(res => this.selectedProduct$.next(res))
     )
   }
 
-  getCategories(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/categories`).pipe(
-      map((categories: any) => categories),
-      tap(res => this.products$.next(res))
-    )
-  }
-
-  getProductByName(name: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/products/${name}`).pipe(
-      map((products: any) => products),
-      tap(res => this.products$.next(res))
-    )
-  }
-
-  getProductByBarcode(barcode: string): Observable<Product[]> {
+  getProductByBarcode(barcode: string): Observable<Product> {
     return this.http.get<Product[]>(`${this.apiUrl}/products?barcode=${barcode}`).pipe(
       map((product: Product[]) => {
-        this.loaderService.isLoading$.next(false);
-        return product;
+        // this.loaderService.isLoading$.next(false);
+        return product[0];
       }),
-      // tap(res => this.products$.next(res))
+      tap(res => this.selectedProduct$.next(res)),
+      shareReplay(),
+      catchError(err => this.errorHandlerService.handleError(err))
     )
   }
+
+  addToBasket(newOrderItem: OrderItem) {
+    const orderItem: OrderItem | undefined = this.orderItems.find(item => item.product.barcode === newOrderItem.product.barcode);
+    if (orderItem) {
+      orderItem.qty += 1;
+    } else {
+      this.orderItems.push(newOrderItem);
+    }
+    this.basket$.next(this.orderItems);
+  }
+
+  removeFromBasket(product: Product) {
+    const orderItem: OrderItem | undefined = this.orderItems.find(item => item.product.barcode === product.barcode)!;
+    if (orderItem && orderItem.qty > 1) {
+      orderItem.qty -= 1;
+    } else {
+      const index = this.orderItems.indexOf(orderItem);
+      this.orderItems.splice(index, 1);
+    }
+
+    this.basket$.next(this.orderItems);
+  }
+
+  order(basket: OrderItem[]): Observable<any> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    const body = { "orders": basket }
+    return this.http.post<OrderItem[]>(`${this.apiUrl}/orders`, body, requestOptions)
+      .pipe(
+        shareReplay(),
+        catchError(err => this.errorHandlerService.handleError(err))
+      );
+
+  }
+
+
 }

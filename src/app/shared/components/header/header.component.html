@@ -5,24 +5,25 @@
     *ngIf="router.url !== '/login'; else loginHeader"
   >
 
-    <button
+    <!-- <button
       mat-icon-button
       class="menu-user-button mx-5"
     >
-      <!-- (click)="displayNotifications()" -->
       <mat-icon>notifications_none</mat-icon>
-      <!-- <span
-        *ngIf="(notifications$ | async)?.length"
-        class="red-badge"
-      >
-      </span> -->
-    </button>
+    </button> -->
 
     <button
       mat-icon-button
       class="mx-5"
+      routerLink="products/basket"
     >
       <mat-icon>shopping_cart</mat-icon>
+      <span
+        *ngIf="basketNumber > 0"
+        class="red-badge"
+      >
+        <span class="red-badge-number">{{basketNumber}}</span>
+      </span>
     </button>
 
     <button
@@ -74,41 +75,3 @@
     </div>
   </button>-->
 </ng-template>
-
-<!-- <div
-  #notificationsPanel
-  class="d-flex-flex-column notificationsPanel"
-  *ngIf="showNotifications"
->
- <div class="d-flex flex-row no-wrap justify-content-between text-black">
-    <h2>{{'NOTIFICATIONS' | translate}}</h2>
-    <button
-      mat-icon-button
-      (click)="hideNotifications()"
-    >
-      <mat-icon>close</mat-icon>
-    </button>
-  </div> -->
-
-<!-- <div *ngFor="let notification of (notifications$ | async)">
-    <mat-card *ngIf="!notification.seen">
-      <mat-card-title>{{notification.title}}</mat-card-title>
-      <mat-card-content>{{notification.content}}</mat-card-content>
-      <mat-card-footer>
-        <div class="d-flex flex-row justify-content-between">
-          <button
-            class="btn btn-secondary"
-            (click)="markNotificationSeen(notification)"
-          >OK
-          </button>
-          <button
-            class="btn btn-secondary"
-            (click)="markNotificationSeen(notification)"
-          >Cancel
-          </button>
-        </div>
-      </mat-card-footer>
-    </mat-card>
-  </div>
-
-</div>-->

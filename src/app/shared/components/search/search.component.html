@@ -1,0 +1,36 @@
+<form [formGroup]="form">
+  <div class="d-flex flex-row justify-content-center m-0 p-0">
+    <mat-form-field appearance="outline">
+      <input
+        #searchInput
+        class="search-input"
+        matInput
+        placeholder="Search"
+        autocomplete="off"
+        (input)="setSearchValue($event)"
+        formControlName="search"
+      >
+      <button
+        type="button"
+        mat-icon-button
+        matSuffix
+        *ngIf="searchValue"
+        (click)="clearForm()"
+        class="pointer"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="search-button mx-2"
+      (click)="searchProducts()"
+      [disabled]="searchValue.length < 3"
+    >
+      <mat-icon>search</mat-icon> <span class="d-none d-md-inline ml-2 pr-3">Search</span>
+    </button>
+
+  </div>
+</form>

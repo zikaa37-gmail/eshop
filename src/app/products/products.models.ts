@@ -95,12 +95,14 @@ export interface Address {
 }
 
 export interface OrderItem {
-  id: number;
-  product: Product;
-  orderDate: Date;
-  currentPrice: number;
+  id?: number;
   customerId: number;
-  active: boolean;
+  product: Product;
+  // name: string;
+  // barcode: string;
+  orderDate: Date;
+  // price: number;
+  qty: number;
 }
 
 export interface Order {

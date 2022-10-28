@@ -11,6 +11,15 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'categories',
+    // canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./categories/categories.module').then(
+        (m) => m.CategoriesModule
+      ),
+
+  },
+  {
     path: 'products',
     // canActivate: [AuthGuard],
     loadChildren: () =>
@@ -22,12 +31,14 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/login'
+    redirectTo: '/categories'
+    // redirectTo: '/login'
   },
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: '/login'
+    redirectTo: '/categories'
+    // redirectTo: '/login',
   },
 ];
 
