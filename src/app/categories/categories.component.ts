@@ -20,14 +20,7 @@ export class CategoriesComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    // this.getCategories();
-  }
-
-  getCategories() {
-    this.categories$ = this.categoriesService.getCategories();
-  }
-
+  ngOnInit(): void { }
   navigateTo(name: string) {
     this.router.navigate([`products/category/${name}`])
   }

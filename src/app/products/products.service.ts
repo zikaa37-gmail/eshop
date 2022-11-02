@@ -28,7 +28,7 @@ export class ProductsService {
     private http: HttpClient,
     private loaderService: LoaderService,
     private errorHandlerService: ErrorHandlerService
-  ) { this.getProducts().subscribe(); }
+  ) { }
 
 
   getProducts(search = ''): Observable<Product[]> {
