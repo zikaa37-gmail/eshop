@@ -4,7 +4,7 @@ import { BehaviorSubject, catchError, combineLatest, map, Observable, shareRepla
 import { environment } from 'src/environments/environment';
 import { LoaderService } from '../shared/components/loader/loader.service';
 import { ErrorHandlerService } from '../shared/services/error-handler.service';
-import { Category, OrderItem, Product } from './products.models';
+import { OrderItem, Product } from './products.models';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +31,6 @@ export class ProductsService {
   ) { this.getProducts().subscribe(); }
 
 
-  // productsResult$ = combineLatest([this.products$, this.productsAction$])
-  //   .pipe(
-  //     map(([products, action]) => {
-  //       products.map(product => product)
-  //     }));
-
   getProducts(search = ''): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/products?${search}`)
       .pipe(
@@ -51,7 +45,6 @@ export class ProductsService {
   getProductByName(name: string): Observable<Product> {
     return this.http.get<Product[]>(`${this.apiUrl}/products/${name}`).pipe(
       map((product: Product[]) => {
-        // this.loaderService.isLoading$.next(false);
         return product[0];
       }),
 
@@ -62,7 +55,6 @@ export class ProductsService {
   getProductByBarcode(barcode: string): Observable<Product> {
     return this.http.get<Product[]>(`${this.apiUrl}/products?barcode=${barcode}`).pipe(
       map((product: Product[]) => {
-        // this.loaderService.isLoading$.next(false);
         return product[0];
       }),
       tap(res => this.selectedProduct$.next(res)),
