@@ -75,7 +75,9 @@ export class ProductsService {
 
   removeFromBasket(product: Product) {
     const orderItem: OrderItem | undefined = this.orderItems.find(item => item.product.barcode === product.barcode)!;
-    if (orderItem && orderItem.qty > 1) {
+    if (!orderItem) {
+      return;
+    } else if (orderItem && orderItem.qty > 1) {
       orderItem.qty -= 1;
     } else {
       const index = this.orderItems.indexOf(orderItem);
