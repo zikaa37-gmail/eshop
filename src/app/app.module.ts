@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 
+import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 @NgModule({
   declarations: [
     AppComponent
@@ -35,6 +37,10 @@ import { SharedModule } from './shared/shared.module';
         positionClass: 'toast-bottom-right'
       }
     ),
+
+    AkitaNgRouterStoreModule,
+    AkitaNgDevtools.forRoot(),
+
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,

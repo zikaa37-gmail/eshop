@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
 import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { Product } from '../products.models';
-import { ProductsService } from '../products.service';
-import { Location } from '@angular/common'
+import { Location } from '@angular/common';
+import { ProductsQuery } from '../state/products.query';
 
 @Component({
   selector: 'app-products-list',
@@ -13,19 +13,23 @@ import { Location } from '@angular/common'
 })
 export class ProductsListComponent implements OnInit {
   name = this.route.snapshot.params['name'];
-  products$: Observable<Product[]> = this.productsService.products$;//Subject;
+  products$!: Observable<Product[]>;
   filteredProducts$!: Observable<Product[]>;
   isLoading$ = this.loaderService.isLoading$;
 
   constructor(
     private loaderService: LoaderService,
-    public productsService: ProductsService,
+    private productsQuery: ProductsQuery,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
   ) { }
 
   ngOnInit(): void {
+    this.products$ = this.productsQuery.getProducts()
+      .pipe(
+        filter(res => !!res)
+      );
     this.filteredProducts$ = this.products$.pipe(
       map(products => products.filter(p => p.categoryName === this.name))
     )

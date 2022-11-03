@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { LoaderService } from '../shared/components/loader/loader.service';
 import { ErrorHandlerService } from '../shared/services/error-handler.service';
 import { OrderItem, Product } from './products.models';
+import { ProductsStore } from './state/products.store';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,8 @@ export class ProductsService {
   constructor(
     private http: HttpClient,
     private loaderService: LoaderService,
-    private errorHandlerService: ErrorHandlerService
+    private errorHandlerService: ErrorHandlerService,
+    private productsStore: ProductsStore
   ) { }
 
 
@@ -37,6 +39,7 @@ export class ProductsService {
         tap((res: Product[]) => {
           this.productsSubject.next(res);
         }),
+        tap(products => this.productsStore.update({ products })),
         shareReplay(),
         catchError(err => this.errorHandlerService.handleError(err))
       )
@@ -47,8 +50,9 @@ export class ProductsService {
       map((product: Product[]) => {
         return product[0];
       }),
-
-      tap(res => this.selectedProduct$.next(res))
+      tap(res => this.selectedProduct$.next(res)),
+      shareReplay(),
+      catchError(err => this.errorHandlerService.handleError(err))
     )
   }
 
@@ -75,7 +79,10 @@ export class ProductsService {
 
   removeFromBasket(product: Product) {
     const orderItem: OrderItem | undefined = this.orderItems.find(item => item.product.barcode === product.barcode)!;
-    if (orderItem && orderItem.qty > 1) {
+    if (!orderItem) {
+      return;
+    }
+    else if (orderItem && orderItem.qty > 1) {
       orderItem.qty -= 1;
     } else {
       const index = this.orderItems.indexOf(orderItem);

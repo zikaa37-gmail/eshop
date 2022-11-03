@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { Observable } from "rxjs";
+import { Observable, take } from "rxjs";
 import { Product } from "./products.models";
 
 import { ProductsService } from "./products.service";
@@ -13,7 +13,7 @@ export class ProductsRouteGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     : boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    this.productsService.getProducts().subscribe();
+    this.productsService.getProducts().pipe(take(1)).subscribe();
     return true;
   }
 
