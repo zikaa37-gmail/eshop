@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 import { Category } from './categories.models';
 import { LoaderService } from '../shared/components/loader/loader.service';
@@ -12,27 +11,18 @@ import { CategoriesQuery } from './state/categories.query';
   styleUrls: ['./categories.component.scss']
 })
 
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent {
   isLoading$: Observable<boolean> = this.loaderService.isLoading$;
-  categories$!: Observable<Category[]>;
+  categories$: Observable<Category[]> = this.categoriesQuery.getCategories()
+    .pipe(
+      filter((res) => !!res)
+    );
 
   constructor(
     private loaderService: LoaderService,
     public categoriesService: CategoriesService,
-    private categoriesQuery: CategoriesQuery,
-    private router: Router
+    private categoriesQuery: CategoriesQuery
   ) { }
 
-  ngOnInit(): void {
-    (this.categories$ =
-      this.categoriesQuery.getCategories()
-        .pipe(
-          filter((res) => !!res)
-        ))
-  }
-
-  navigateTo(name: string) {
-    this.router.navigate([`products/category/${name}`])
-  }
 
 }

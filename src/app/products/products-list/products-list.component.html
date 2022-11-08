@@ -12,10 +12,10 @@
       <app-preview-box
         *ngFor="let product of products"
         [hasFooter]="true"
+        [link]="'/products/preview/'+product.barcode"
         [name]="product.name"
         [image]="product.images[0]"
         [price]="product.price"
-        (click)="navigateTo(product.barcode)"
       ></app-preview-box>
     </div>
 

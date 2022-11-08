@@ -1,13 +1,15 @@
-<mat-card class="pointer">
-  <mat-card-header>
-    <h3 class="ellipsis">{{name}}</h3>
-  </mat-card-header>
-  <mat-card-content><img
-      [src]="image"
-      class="img"
-    ></mat-card-content>
-  <mat-card-footer
-    class="text-right"
-    *ngIf="hasFooter"
-  >${{price}}</mat-card-footer>
-</mat-card>
+<a [routerLink]="link">
+  <mat-card class="pointer">
+    <mat-card-header>
+      <h3 class="ellipsis">{{name | titlecase}}</h3>
+    </mat-card-header>
+    <mat-card-content><img
+        [src]="image"
+        class="img"
+      ></mat-card-content>
+    <mat-card-footer
+      class="text-right"
+      *ngIf="hasFooter"
+    >${{price}}</mat-card-footer>
+  </mat-card>
+</a>
