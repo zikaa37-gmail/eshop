@@ -1,22 +1,24 @@
 <app-search></app-search>
-<!-- (resetSearchValue)="resetSearchValue($event)" -->
 <div class="container">
   <div class="d-flex flex-column w-100">
-
     <div
-      class="d-flex flex-row flex-wrap justify-content-center w-100"
+      class="d-flex flex-row flex-wrap m-0 p-0 justify-content-center"
       *ngIf="(products$ | async) as products"
     >
-      <app-preview-box
-        *ngFor="let product of products"
-        [hasFooter]="true"
-        [link]="'/products/preview/'+product.barcode"
-        [name]="product.name"
-        [image]="product.images[0]"
-        [price]="product.price"
-      ></app-preview-box>
+      <ng-container *ngIf="products.length">
+        <app-preview-box
+          *ngFor="let product of products"
+          [hasFooter]="true"
+          [link]="'/products/preview/'+product.barcode"
+          [name]="product.name"
+          [image]="product.images[0]"
+          [price]="product.price"
+        ></app-preview-box>
+      </ng-container>
+
+      <ng-container *ngIf="!products.length">No items</ng-container>
     </div>
-    <div *ngIf="(products$ | async)?.length === 0">No Items</div>
+
   </div>
 
   <div class="my-5 text-right">

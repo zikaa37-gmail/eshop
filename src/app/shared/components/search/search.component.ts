@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { SearchParams } from 'src/app/products/products.models';
+import { map, Observable, switchMap } from 'rxjs';
+import { Product, SearchParams } from 'src/app/products/products.models';
 import { ProductsService } from 'src/app/products/products.service';
 import { LoaderService } from '../loader/loader.service';
 
@@ -14,7 +14,15 @@ import { LoaderService } from '../loader/loader.service';
 export class SearchComponent implements OnInit {
   form!: FormGroup;
   isLoading$: Observable<boolean> = this.loaderService.isLoading$;
-  name = this.route.snapshot.params['name'];
+  q = this.productsService.search$;
+  products$: Observable<Product[]> = this.q.pipe(
+    map(q => q),
+    switchMap(q => {
+      const searchValue = q ? `q=${q}` : null;
+      this.form.patchValue({ search: q });
+      return this.productsService.getProducts(searchValue);
+    })
+  )
   searchParams: SearchParams = {
     q: '',
     _start: 1,//&
@@ -37,14 +45,7 @@ export class SearchComponent implements OnInit {
     private loaderService: LoaderService,
     private productsService: ProductsService,
     private fb: FormBuilder
-  ) {
-    this.productsService.search$.subscribe(q => {
-      if (q) {
-        this.searchValue = q;
-        this.form.patchValue({ search: q })
-      }
-    })
-  }
+  ) { }
 
   ngOnInit(): void {
     this.buildForm();

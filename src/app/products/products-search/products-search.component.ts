@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
+import { map, Observable, shareReplay, switchMap } from 'rxjs';
 import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { Product } from '../products.models';
 import { ProductsService } from '../products.service';
@@ -29,9 +29,6 @@ export class ProductsSearchComponent {
     private location: Location
   ) { }
 
-  // resetSearchValue(event: any) {
-  //   this.productsService.searchSubject.next(event);
-  // }
 
   back(): void {
     this.location.back();
