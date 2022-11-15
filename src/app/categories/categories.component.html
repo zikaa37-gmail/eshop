@@ -6,21 +6,21 @@
 
   <div
     class="d-flex flex-row flex-wrap m-0 p-0 justify-content-center"
-    *ngIf="(categories$ | async) as categories; else noItems"
+    *ngIf="(categories$ | async) as categories"
   >
-    <app-preview-box
-      *ngFor="let category of categories"
-      [link]="'/products/category/'+category.name"
-      [name]="category.name"
-      [image]="category.imageUrl"
-      class="m-0 p-0"
-    ></app-preview-box>
+    <ng-container *ngIf="categories.length">
+      <app-preview-box
+        *ngFor="let category of categories"
+        [link]="'/products/category/'+category.name"
+        [name]="category.name"
+        [image]="category.imageUrl"
+        class="m-0 p-0"
+      ></app-preview-box>
+    </ng-container>
+
+    <ng-container *ngIf="!categories.length">No items</ng-container>
 
   </div>
-
-  <ng-template #noItems>
-    No items
-  </ng-template>
 
 </div>
 
