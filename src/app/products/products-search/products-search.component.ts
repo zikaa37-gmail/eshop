@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { Product } from '../products.models';
 import { ProductsService } from '../products.service';
@@ -13,21 +13,25 @@ import { Location } from '@angular/common';
 })
 export class ProductsSearchComponent {
   isLoading$: Observable<boolean> = this.loaderService.isLoading$;
-  q = '';
-  products$!: Observable<Product[]>;
+  q = this.productsService.search$;
+  products$: Observable<Product[]> = this.q.pipe(
+    map(q => q),
+    switchMap(q => {
+      const searchValue = q ? `q=${q}` : null;
+      return this.productsService.getProducts(searchValue);
+    })
+  )
+  searchValue!: string | null;
 
   constructor(
     private loaderService: LoaderService,
     private productsService: ProductsService,
-    private route: ActivatedRoute,
     private location: Location
-  ) {
-    this.route.params.subscribe(params => {
-      this.q = params['q'];
-      this.products$ = this.productsService.getProducts(`q=${this.q}`);
-    });
-  }
+  ) { }
 
+  // resetSearchValue(event: any) {
+  //   this.productsService.searchSubject.next(event);
+  // }
 
   back(): void {
     this.location.back();

@@ -27,9 +27,10 @@
       color="primary"
       class="search-button mx-2"
       (click)="searchProducts()"
-      [disabled]="searchValue.length < 3"
+      [disabled]="!searchValue || searchValue.length < 3"
     >
       <mat-icon>search</mat-icon> <span class="d-none d-md-inline ml-2 pr-3">Search</span>
+
     </button>
 
   </div>

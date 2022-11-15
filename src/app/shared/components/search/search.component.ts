@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -28,7 +28,8 @@ export class SearchComponent implements OnInit {
     _ne: '', //   /posts?id_ne=1
     _embed: ''
   }
-  searchValue = '';
+
+  searchValue!: string | null;
 
   constructor(
     public router: Router,
@@ -37,9 +38,9 @@ export class SearchComponent implements OnInit {
     private productsService: ProductsService,
     private fb: FormBuilder
   ) {
-    this.productsService.queryString$.subscribe(q => {
+    this.productsService.search$.subscribe(q => {
       if (q) {
-        this.searchValue = q ? q : '';
+        this.searchValue = q;
         this.form.patchValue({ search: q })
       }
     })
@@ -47,16 +48,15 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    this.form.reset();
   }
 
   searchProducts() {
-    if (this.searchValue.length < 3) {
+    if (!this.searchValue || this.searchValue.length < 3) {
       return;
     }
 
-    this.productsService.queryString$.next(this.searchValue);
-    this.router.navigate(['products/search', this.searchValue]);
+    this.productsService.searchSubject.next(this.searchValue);
+    this.router.navigate(['products/search']);
   }
 
   setSearchValue(event: any) {
@@ -82,12 +82,13 @@ export class SearchComponent implements OnInit {
 
   clearForm() {
     this.form.reset();
-    this.productsService.queryString$.next('');
+    this.searchValue = null;
+    this.productsService.searchSubject.next(null);
   }
 
   buildForm() {
     this.form = this.fb.group({
-      search: [this.productsService.queryString$]
+      search: [this.searchValue]
     })
   }
 
