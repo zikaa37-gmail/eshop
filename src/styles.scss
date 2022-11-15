@@ -18,7 +18,8 @@ body {
 a,
 i,
 .pointer {
-  cursor: pointer;
+  cursor         : pointer;
+  text-decoration: none !important;
 }
 
 html,

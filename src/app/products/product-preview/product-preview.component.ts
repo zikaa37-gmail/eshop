@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
 import { LoaderService } from 'src/app/shared/components/loader/loader.service';
@@ -12,12 +12,17 @@ import { ProductsQuery } from '../state/products.query';
   templateUrl: './product-preview.component.html',
   styleUrls: ['./product-preview.component.scss']
 })
-export class ProductPreviewComponent implements OnInit {
+export class ProductPreviewComponent {
   isLoading$: Observable<boolean> = this.loaderService.isLoading$;
   barcode = this.route.snapshot.params['barcode'];
-  products$!: Observable<Product[]>;
+  products$: Observable<Product[]> = this.productsQuery.getProducts()
+    .pipe(
+      filter(res => !!res)
+    );;
   basket$: Observable<OrderItem[]> = this.productsService.basket$;
-  selectedProduct$!: Observable<Product>;
+  selectedProduct$: Observable<Product> = this.products$.pipe(
+    map(products => products.find(p => p.barcode === this.barcode)!)
+  );
 
   constructor(
     private route: ActivatedRoute,
@@ -27,15 +32,6 @@ export class ProductPreviewComponent implements OnInit {
     private location: Location
   ) { }
 
-  ngOnInit(): void {
-    this.products$ = this.productsQuery.getProducts()
-      .pipe(
-        filter(res => !!res)
-      );
-    this.selectedProduct$ = this.products$.pipe(
-      map(products => products.find(p => p.barcode === this.barcode)!)
-    )
-  }
 
   back(): void {
     this.location.back()

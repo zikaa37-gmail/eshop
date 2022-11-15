@@ -12,7 +12,7 @@ const routes: Routes = [
     canActivate: [ProductsRouteGuard],
     children: [
       {
-        path: 'search/:q',
+        path: 'search',
         component: ProductsSearchComponent
       },
       {

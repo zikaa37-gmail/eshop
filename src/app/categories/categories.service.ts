@@ -10,10 +10,7 @@ import { CategoriesStore } from './state/categories.store';
   providedIn: 'root'
 })
 export class CategoriesService {
-  apiUrl = environment.apiUrl;
-
-  private categoriesSubject = new BehaviorSubject<Category[]>([]);
-  categories$ = this.categoriesSubject.asObservable();
+  private readonly apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient,
@@ -25,12 +22,7 @@ export class CategoriesService {
     this.categoriesStore.setLoading(true);
     return this.http.get<Category[]>(`${this.apiUrl}/categories`)
       .pipe(
-        tap(result => {
-          this.categoriesSubject.next(result);
-          this.categoriesStore.setLoading(false);
-        }),
         tap(categories => this.categoriesStore.update({ categories })),
-        shareReplay(),
         catchError(err => this.errorHandlerService.handleError(err))
       )
   }

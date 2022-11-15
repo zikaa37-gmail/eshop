@@ -1,5 +1,5 @@
-<!-- {{(products$ | async) | json}} -->
 <app-search></app-search>
+<!-- (resetSearchValue)="resetSearchValue($event)" -->
 <div class="container">
   <div class="d-flex flex-column w-100">
 
@@ -10,10 +10,10 @@
       <app-preview-box
         *ngFor="let product of products"
         [hasFooter]="true"
+        [link]="'/products/preview/'+product.barcode"
         [name]="product.name"
         [image]="product.images[0]"
         [price]="product.price"
-        (click)="navigateTo(product.barcode)"
       ></app-preview-box>
     </div>
     <div *ngIf="(products$ | async)?.length === 0">No Items</div>

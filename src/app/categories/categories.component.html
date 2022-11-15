@@ -10,10 +10,10 @@
   >
     <app-preview-box
       *ngFor="let category of categories"
+      [link]="'/products/category/'+category.name"
       [name]="category.name"
       [image]="category.imageUrl"
       class="m-0 p-0"
-      (click)="navigateTo(category.name)"
     ></app-preview-box>
 
   </div>

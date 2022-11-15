@@ -1,8 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, combineLatest, map, Observable, shareReplay, Subject, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, shareReplay, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LoaderService } from '../shared/components/loader/loader.service';
 import { ErrorHandlerService } from '../shared/services/error-handler.service';
 import { OrderItem, Product } from './products.models';
 import { ProductsStore } from './state/products.store';
@@ -11,34 +10,26 @@ import { ProductsStore } from './state/products.store';
   providedIn: 'root'
 })
 export class ProductsService {
-  apiUrl = environment.apiUrl;
+  private readonly apiUrl = environment.apiUrl;
 
-  private productsSubject = new BehaviorSubject<Product[]>([]);
-  products$ = this.productsSubject.asObservable();
+  searchSubject = new BehaviorSubject<string | null>(null);
+  search$ = this.searchSubject.asObservable();
 
-  private productsActionSubject = new BehaviorSubject<string>('');
-  productsAction$ = this.productsActionSubject.asObservable();
-
-  search$ = new BehaviorSubject<string>('');
   selectedProduct$ = new Subject<Product>();
   basket$ = new BehaviorSubject<OrderItem[]>([]);
   orderItems: OrderItem[] = [];
-  queryString$ = new BehaviorSubject<string>('');
 
   constructor(
     private http: HttpClient,
-    private loaderService: LoaderService,
     private errorHandlerService: ErrorHandlerService,
     private productsStore: ProductsStore
   ) { }
 
 
-  getProducts(search = ''): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products?${search}`)
+  getProducts(search: string | null = null): Observable<Product[]> {
+    const searchString = search ? ('?' + search) : '';
+    return this.http.get<Product[]>(`${this.apiUrl}/products${searchString}`)
       .pipe(
-        tap((res: Product[]) => {
-          this.productsSubject.next(res);
-        }),
         tap(products => this.productsStore.update({ products })),
         shareReplay(),
         catchError(err => this.errorHandlerService.handleError(err))
@@ -93,14 +84,8 @@ export class ProductsService {
   }
 
   order(basket: OrderItem[]): Observable<any> {
-    const requestOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
-
     const body = { "orders": basket }
-    return this.http.post<OrderItem[]>(`${this.apiUrl}/orders`, body, requestOptions)
+    return this.http.post<OrderItem[]>(`${this.apiUrl}/orders`, body)
       .pipe(
         shareReplay(),
         catchError(err => this.errorHandlerService.handleError(err))
