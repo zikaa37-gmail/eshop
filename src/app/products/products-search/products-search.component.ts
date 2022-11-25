@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map, Observable, shareReplay, switchMap } from 'rxjs';
+import { filter, map, Observable, switchMap } from 'rxjs';
 import { LoaderService } from 'src/app/shared/components/loader/loader.service';
 import { Product } from '../products.models';
 import { ProductsService } from '../products.service';
@@ -16,6 +15,7 @@ export class ProductsSearchComponent {
   q = this.productsService.search$;
   products$: Observable<Product[]> = this.q.pipe(
     map(q => q),
+    filter(res => res !== null),
     switchMap(q => {
       const searchValue = q ? `q=${q}` : null;
       return this.productsService.getProducts(searchValue);

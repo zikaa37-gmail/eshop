@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
+import { filter, map, Observable, switchMap } from 'rxjs';
 import { Product, SearchParams } from 'src/app/products/products.models';
 import { ProductsService } from 'src/app/products/products.service';
 import { LoaderService } from '../loader/loader.service';
@@ -17,10 +17,11 @@ export class SearchComponent implements OnInit {
   q = this.productsService.search$;
   products$: Observable<Product[]> = this.q.pipe(
     map(q => q),
+    filter(res => res !== null),
     switchMap(q => {
-      const searchValue = q ? `q=${q}` : null;
+      this.searchValue = q ? `q=${q}` : null;
       this.form.patchValue({ search: q });
-      return this.productsService.getProducts(searchValue);
+      return this.productsService.getProducts(this.searchValue);
     })
   )
   searchParams: SearchParams = {
